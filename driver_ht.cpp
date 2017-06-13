@@ -87,10 +87,12 @@ int main()
             {"Jose Lima", 18, 331, 1231, 850.f},
             {"Saulo Cunha", 116, 666, 1, 5490.f}
         };
-
+*/
 	// Cria uma tabela de dispersao com capacidade p 23 elementos
-	HashTbl< Account::AcctKey, Account, KeyHash, KeyEqual > contas( 23 );
-
+	HashTbl< Account::AcctKey, Account > contas(23);
+    std::cout << "capacidade contas = " << contas.capacity() << std::endl;
+    std::cout << "quantidade contas = " << contas.count()    << std::endl;
+/*
 	contas.insert( myAccounts[2].get_key(), myAccounts[2] );
 	contas.insert( myAccounts[0].get_key(), myAccounts[0] );
 	contas.insert( myAccounts[3].get_key(), myAccounts[3] );

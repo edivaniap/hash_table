@@ -27,20 +27,23 @@ namespace MyHashTable {
             typedef HashEntry<KeyType,DataType> Entry;
 
             HashTbl( int TableSz_ = DEFAULT_SIZE );
-            virtual ~HashTbl();
+            virtual ~HashTbl( void );
 
             bool insert( const KeyType &, const DataType &  );
             bool retrieve( const KeyType &, DataType & ) const;
             // bool remove()
-            // void clear()
-            // bool empty().
-            unsigned int count() const { return m_count; }
-            void print();
+            void clear( void );
+
+            bool empty( void ) const;
+            size_t count( void ) const;
+            size_t capacity( void ) const;
+           
+            void print( void ) const;
 
         private:
             void rehash();        //!< Change Hash table size if load factor >1.0
-            unsigned int m_size;  //!< Tamanho da tabela.
-            unsigned int m_count; //!< Numero de elementos na tabel. 
+            size_t m_size;  //!< Tamanho da tabela.
+            size_t m_count; //!< Numero de elementos na tabel. 
             std::list< Entry > *m_data_table; //!< Tabela de listas para entradas de tabela.
             // std::unique_ptr< std::forward_list< Entry > [] > m_data_table;
             static const short DEFAULT_SIZE = 11;
