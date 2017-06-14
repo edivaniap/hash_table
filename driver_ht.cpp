@@ -69,15 +69,13 @@ struct KeyEqual
 	bool operator()( const Account::AcctKey & _lhs, const Account::AcctKey & _rhs ) const
 	{
 		return ( _lhs == _rhs );
-		//return ( _lhs.first == _rhs.first && _lhs.second == _rhs.second );
 	}
 };
 
 
 int main()
 {
-
-/*	Account acct("Alex Bastos", 1, 1668, 54321, 1500.f);
+	Account acct("Alex Bastos", 1, 1668, 54321, 1500.f);
 
 	Account myAccounts[] =
         {
@@ -87,19 +85,17 @@ int main()
             {"Jose Lima", 18, 331, 1231, 850.f},
             {"Saulo Cunha", 116, 666, 1, 5490.f}
         };
-*/
+
 	// Cria uma tabela de dispersao com capacidade p 23 elementos
 	HashTbl< Account::AcctKey, Account > contas(23);
     std::cout << "capacidade contas = " << contas.capacity() << std::endl;
     std::cout << "quantidade contas = " << contas.count()    << std::endl;
-/*
+
 	contas.insert( myAccounts[2].get_key(), myAccounts[2] );
 	contas.insert( myAccounts[0].get_key(), myAccounts[0] );
 	contas.insert( myAccounts[3].get_key(), myAccounts[3] );
 	contas.insert( myAccounts[1].get_key(), myAccounts[1] );
 	contas.insert( myAccounts[4].get_key(), myAccounts[4] );
-
-	contas.print();
 
 #ifdef _NOT_NOW
 	// Em um segundo momento...
@@ -115,6 +111,9 @@ int main()
 	for( auto & e : myAccounts )
 		std::cout << e << std::endl;
 
-        std::cout << "\n\n>>> Normal exiting...\n";
-	return EXIT_SUCCESS;*/
+    std::cout << "\n\n>>> Hash Table...\n";
+    contas.print();
+
+    std::cout << "\n\n>>> Normal exiting...\n";
+	return EXIT_SUCCESS;
 }

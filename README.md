@@ -8,14 +8,14 @@ This project implements the ADT called **hash table**.
 
 - [X] _**HashTbl**_ :
 - [X] _**~HashTbl**_ :
-- [ ] _**insert**_ : 
+- [X] _**insert**_ : 
 - [ ] _**retrieve**_ : 
 - [ ] _**remove**_ : 
 - [X] _**clear**_ : 
 - [X] _**empty**_ : 
 - [X] _**count**_ : 
 - [X] _**capacity**_ : 
-- [ ] _**print**_ : 
+- [X] _**print**_ : 
 
 	
 # Compiling and runing

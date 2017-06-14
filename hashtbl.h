@@ -6,6 +6,9 @@
 
 using namespace std;
 
+bool is_prime( long );
+size_t next_prime( size_t );
+
 namespace MyHashTable {
 
     template<class KeyType, class DataType>
@@ -26,19 +29,19 @@ namespace MyHashTable {
         public:
             typedef HashEntry<KeyType,DataType> Entry;
 
-            HashTbl( int TableSz_ = DEFAULT_SIZE );
-            virtual ~HashTbl( void );
+            HashTbl( int TableSz_ = DEFAULT_SIZE ); //done
+            virtual ~HashTbl( void ); //done
 
             bool insert( const KeyType &, const DataType &  );
             bool retrieve( const KeyType &, DataType & ) const;
             // bool remove()
-            void clear( void );
+            void clear( void ); //done
 
-            bool empty( void ) const;
-            size_t count( void ) const;
-            size_t capacity( void ) const;
+            bool empty( void ) const; //done
+            size_t count( void ) const; //done
+            size_t capacity( void ) const; //done
            
-            void print( void ) const;
+            void print( void ) const; 
 
         private:
             void rehash();        //!< Change Hash table size if load factor >1.0
