@@ -1,10 +1,10 @@
-## Hash Table
+# Hash Table
 
-### Introduction
+## Introduction
 
 This project implements the ADT called **hash table**.
 
-### TODO
+## TODO
 
 **Class HashTbl**  
 
@@ -20,17 +20,17 @@ This project implements the ADT called **hash table**.
 - [X] _**print**_ : 
 
 	
-### Compiling and runing
+## Compiling and runing
 
 	`$ make`
 
 
-### Git repository
+## Git repository
 
 [**github.com/edivaniap/hash_table**](https://github.com/edivaniap/hash_table)
 
 
-### Authorship
+## Authorship
 
 Program developed by _Edivânia Pontes de Oliveira_ (< *edivaniap@ufrn.edu.br* >), 2017.1  
 Guided by _Selan R. dos Santos_
