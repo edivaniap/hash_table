@@ -13,7 +13,7 @@ This project implements the ADT called **hash table**.
 - [X] _**insert**_ : 
 - [X] _**retrieve**_ : 
 - [X] _**remove**_ : 
-- [ ] _**rehash**_ :
+- [X] _**rehash**_ :
 - [X] _**clear**_ : 
 - [X] _**empty**_ : 
 - [X] _**count**_ : 
