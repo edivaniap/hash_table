@@ -1,3 +1,13 @@
+/**  
+ * @file hashtbl.cpp  
+ * @version 1.0  
+ * @date 14/06/2017  
+ * @author Edivânia Pontes de Oliveira  
+ * @title Driver program 
+ * @brief Contém os testes da Hash Table.  
+ */
+
+
 #include <iostream>
 #include <functional>
 #include <tuple>
@@ -101,16 +111,12 @@ int main()
         contas.insert( myAccounts[4].get_key(), myAccounts[4] );
 
     #ifdef _NOT_NOW
-        // Em um segundo momento... OK
+        // Em um segundo momento... [OK]
         Account conta1;
 
         contas.retrieve( myAccounts[2].get_key(), conta1 );
         std::cout << conta1.m_client_name << std::endl;
     #endif
-
-
-        std::cout << ">>> Contas na Hash Table: " << std::endl;   
-
 
         contas.print();
         assert( contas.count() == 5 );
@@ -146,6 +152,36 @@ int main()
         assert( next_prime(55) == 59 );
         assert( next_prime(74) == 79 );
         assert( next_prime(38) == 41 );
+    }
+
+    // testando rehash
+    {
+        std::cout << "\n>> Testando rehash\n";
+        Account accs[] =
+            {
+                {"Luan", 1, 1668, 35412, 1500.f},
+                {"Analyce", 1, 1668, 93264, 530.f},
+                {"Joao Victor", 13, 557, 12745, 150000.f},
+                {"Mara", 18, 331, 27840, 850.f},
+                {"Melqui", 116, 666, 65423, 5490.f},
+                {"Dhulya", 116, 666, 78452, 5490.f}
+            };
+
+        HashTbl< Account::AcctKey, Account > contas(2);
+
+        assert( contas.capacity() == 2 );
+        assert( contas.count() == 0 );
+
+        contas.insert( accs[0].get_key(), accs[0] );
+        contas.insert( accs[1].get_key(), accs[1] );
+        contas.insert( accs[2].get_key(), accs[2] );
+        contas.insert( accs[3].get_key(), accs[3] );
+        contas.insert( accs[4].get_key(), accs[4] );
+        contas.insert( accs[5].get_key(), accs[5] );
+        contas.print();
+
+        assert( contas.capacity() == 5 );
+        assert( contas.count() == 6 );
     }
 
     std::cout << "\n\n>>> Normal exiting...\n";

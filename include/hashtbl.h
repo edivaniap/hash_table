@@ -1,7 +1,17 @@
+/**  
+ * @file hashtbl.cpp  
+ * @version 1.0  
+ * @date 14/06/2017  
+ * @author Edivânia Pontes de Oliveira  
+ * @title Classe HashTbl 
+ * @brief Contém as configurações da Hash Table.  
+ */ 
+
 #ifndef _HASHTBL_H_
 #define _HASHTBL_H_
 
 #include <iostream>
+#include <math.h>
 #include <list>
 
 using namespace std;

@@ -1,0 +1,47 @@
+\hypertarget{classMyHashTable_1_1HashTbl}{}\section{My\+Hash\+Table\+:\+:Hash\+Tbl$<$ Key\+Type, Data\+Type $>$ Class Template Reference}
+\label{classMyHashTable_1_1HashTbl}\index{My\+Hash\+Table\+::\+Hash\+Tbl$<$ Key\+Type, Data\+Type $>$@{My\+Hash\+Table\+::\+Hash\+Tbl$<$ Key\+Type, Data\+Type $>$}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classMyHashTable_1_1HashEntry}{Hash\+Entry}$<$ Key\+Type, Data\+Type $>$ {\bfseries Entry}\hypertarget{classMyHashTable_1_1HashTbl_a080ff43587a10e6936ea52ee115f8836}{}\label{classMyHashTable_1_1HashTbl_a080ff43587a10e6936ea52ee115f8836}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMyHashTable_1_1HashTbl_af870c1ca95e7d888b3df67f4fb8f977a}{Hash\+Tbl} (int Table\+Sz\+\_\+=D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE)\hypertarget{classMyHashTable_1_1HashTbl_af870c1ca95e7d888b3df67f4fb8f977a}{}\label{classMyHashTable_1_1HashTbl_af870c1ca95e7d888b3df67f4fb8f977a}
+
+\begin{DoxyCompactList}\small\item\em Construtor que aloca dinamicamente em $\ast$m\+\_\+data\+\_\+table um vetor cujo tamanho é determinado como sendo o menor número primo maior ou igual do que o valor especificado em Table\+Sz\+\_\+ . \end{DoxyCompactList}\item 
+virtual \hyperlink{classMyHashTable_1_1HashTbl_a07aa99ea74d96249b56ed4cc0c357491}{$\sim$\+Hash\+Tbl} (void)\hypertarget{classMyHashTable_1_1HashTbl_a07aa99ea74d96249b56ed4cc0c357491}{}\label{classMyHashTable_1_1HashTbl_a07aa99ea74d96249b56ed4cc0c357491}
+
+\begin{DoxyCompactList}\small\item\em Destruidor da classe que libera a memória apontada por m\+\_\+data\+\_\+table. \end{DoxyCompactList}\item 
+bool \hyperlink{classMyHashTable_1_1HashTbl_aaa766464157a57339e0fe03b828c39a6}{insert} (const Key\+Type \&k\+\_\+, const Data\+Type \&d\+\_\+)\hypertarget{classMyHashTable_1_1HashTbl_aaa766464157a57339e0fe03b828c39a6}{}\label{classMyHashTable_1_1HashTbl_aaa766464157a57339e0fe03b828c39a6}
+
+\begin{DoxyCompactList}\small\item\em Insere na tabela a informação contida em d\+\_\+ e associada a uma chave k\+\_\+. A classe calcula o endereço \textquotesingle{}indice\textquotesingle{} que a informação d\+\_\+ deve ocupar na tabela e o armazena na lista de colisão correspondente, ou seja, em m\+\_\+data\+\_\+table\mbox{[}indice\mbox{]} . Se a inserção foi realizada com sucesso a função retorna true. Se a chave já existir na tabela, o método sobrescreve os dados da tabela com os dados contidos em d\+\_\+ e retorna \char`\"{}false\char`\"{}, para diferenciar de uma inserção realizada pela primeira vez. \end{DoxyCompactList}\item 
+bool \hyperlink{classMyHashTable_1_1HashTbl_a964cfb4a5833ba52cee5489075a5e645}{retrieve} (const Key\+Type \&k\+\_\+, Data\+Type \&d\+\_\+) const \hypertarget{classMyHashTable_1_1HashTbl_a964cfb4a5833ba52cee5489075a5e645}{}\label{classMyHashTable_1_1HashTbl_a964cfb4a5833ba52cee5489075a5e645}
+
+\begin{DoxyCompactList}\small\item\em Recupera em d\+\_\+ a informação associada a chave k\+\_\+ passada como argumento para o método. Se a chave for encontrada o método retorna \char`\"{}true\char`\"{}, caso contrário \char`\"{}false\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{classMyHashTable_1_1HashTbl_aa2219c57c12f267549c855d96fcf4753}{remove} (const Key\+Type \&k\+\_\+)\hypertarget{classMyHashTable_1_1HashTbl_aa2219c57c12f267549c855d96fcf4753}{}\label{classMyHashTable_1_1HashTbl_aa2219c57c12f267549c855d96fcf4753}
+
+\begin{DoxyCompactList}\small\item\em Remove um item de tabela identificado por sua chave k\+\_\+. Se a chave for encontrada o método retorna \char`\"{}true\char`\"{}, caso contrário retorna \char`\"{}false\char`\"{}. \end{DoxyCompactList}\item 
+void \hyperlink{classMyHashTable_1_1HashTbl_aeb6c0f3da5e26f134586f5a6b13e6d5d}{clear} (void)\hypertarget{classMyHashTable_1_1HashTbl_aeb6c0f3da5e26f134586f5a6b13e6d5d}{}\label{classMyHashTable_1_1HashTbl_aeb6c0f3da5e26f134586f5a6b13e6d5d}
+
+\begin{DoxyCompactList}\small\item\em Libera toda a memória associada às listas de colisão da tabela, removendo todos seus elementos. \end{DoxyCompactList}\item 
+bool \hyperlink{classMyHashTable_1_1HashTbl_ac7f287d3ddfc6dcfc64ff5801aef782f}{empty} (void) const \hypertarget{classMyHashTable_1_1HashTbl_ac7f287d3ddfc6dcfc64ff5801aef782f}{}\label{classMyHashTable_1_1HashTbl_ac7f287d3ddfc6dcfc64ff5801aef782f}
+
+\begin{DoxyCompactList}\small\item\em Retorna \char`\"{}true\char`\"{} se a tabela de dispersão estiver vazia, ou \char`\"{}false\char`\"{} caso contr´ario. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{classMyHashTable_1_1HashTbl_af7db7123f95369ca2a7d831da1b6170d}{count} (void) const \hypertarget{classMyHashTable_1_1HashTbl_af7db7123f95369ca2a7d831da1b6170d}{}\label{classMyHashTable_1_1HashTbl_af7db7123f95369ca2a7d831da1b6170d}
+
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade de elemento atualmente armazenados na tabela. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{classMyHashTable_1_1HashTbl_af8c52791e73b8115d90b8d0ad9e71a10}{capacity} (void) const \hypertarget{classMyHashTable_1_1HashTbl_af8c52791e73b8115d90b8d0ad9e71a10}{}\label{classMyHashTable_1_1HashTbl_af8c52791e73b8115d90b8d0ad9e71a10}
+
+\begin{DoxyCompactList}\small\item\em Retorna o número de elementos que a tabela suporta. \end{DoxyCompactList}\item 
+void \hyperlink{classMyHashTable_1_1HashTbl_a74ac810a0614d7e61e65ac725ed0b3f9}{print} (void) const \hypertarget{classMyHashTable_1_1HashTbl_a74ac810a0614d7e61e65ac725ed0b3f9}{}\label{classMyHashTable_1_1HashTbl_a74ac810a0614d7e61e65ac725ed0b3f9}
+
+\begin{DoxyCompactList}\small\item\em Mostra na tela toda a tabela. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/hashtbl.\+h\item 
+include/\hyperlink{hashtbl_8cpp}{hashtbl.\+cpp}\end{DoxyCompactItemize}
