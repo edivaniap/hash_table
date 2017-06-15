@@ -57,8 +57,25 @@ bool HashTbl< KeyType, DataType>::insert( const KeyType & k_, const DataType & d
 
 template< class KeyType, class DataType >
 bool HashTbl< KeyType, DataType>::retrieve( const KeyType & k_, DataType & d_ ) const
-{
-    return false;
+{    
+    std::hash<KeyType> hashing; 
+    std::equal_to<KeyType> is_equal;
+
+    auto indice = hashing( k_ ) % m_size;         
+
+    auto it = m_data_table[indice].begin(); //<! iterador auxiliar
+    for(size_t j = 0u; j < m_data_table[indice].size(); j++) //<! percorre toda a lista nesta posição da tabela
+    {             
+        if( is_equal( it->m_key, k_ ) )
+        { 
+            d_ = it->m_data;
+            return true;
+        }
+
+        it++;
+    }
+
+    return false; //<! não encontrou
 }
 
 template< class KeyType, class DataType >
@@ -69,9 +86,9 @@ bool HashTbl< KeyType, DataType>::remove( const KeyType & k_ )
 
     auto indice = hashing( k_ ) % m_size;         
 
+    auto it = m_data_table[indice].begin(); //<! iterador auxiliar
     for(size_t j = 0u; j < m_data_table[indice].size(); j++) //<! percorre toda a lista nesta posição da tabela
     {             
-        auto it = m_data_table[indice].begin(); //<! iterador auxiliar
         if( is_equal( it->m_key, k_ ) )
         { 
             m_data_table[indice].erase(it); //<! se for igual, deleta dado
@@ -82,7 +99,7 @@ bool HashTbl< KeyType, DataType>::remove( const KeyType & k_ )
         it++;
     }
 
-    return false; // não encontrou ninguem com a mesma chave
+    return false; //<! não encontrou
 }
 
 template< class KeyType, class DataType >
@@ -119,11 +136,10 @@ void HashTbl< KeyType, DataType >::print( void ) const
 
     for( auto i = 0u; i < m_size; ++i )
     {
-        std::cout << i << " : { key = ";
+        std::cout << "{ pos: " << i << " } ";
         for( auto & e : m_data_table[i] )
-            std::cout << hashing( e.m_key ) << " ; " << e.m_data << " " ;
-
-        std::cout << " }\n";
+            std::cout << "{ key: " << hashing( e.m_key ) << " } { Data: " << e.m_data << " } ";
+        std::cout << "\n";
     }
 }
 
