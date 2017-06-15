@@ -19,39 +19,77 @@ HashTbl< KeyType, DataType>::~HashTbl( void )
 }
 
 template< class KeyType, class DataType >
-bool HashTbl< KeyType, DataType>::insert( const KeyType & key, const DataType & data )
+bool HashTbl< KeyType, DataType>::insert( const KeyType & k_, const DataType & d_ )
 {
+    //<! se o fator de carga > 1,0 : rehash()
+    //if( m_count / m_size > 1.0 ) rehash();
+
     std::hash<KeyType> hashing; //<! função de dispersão
     std::equal_to<KeyType> is_equal; //<! função de comparação    
     
-    HashEntry<KeyType, DataType > new_hash_entry(key, data);
+    HashEntry<KeyType, DataType > new_hash_entry(k_, d_);
 
-    if(m_data_table[hashing(key) % m_size].empty()) { 
-        auto i = m_data_table[hashing( key ) % m_size].begin(); 
-        for(size_t j = 0u; j < m_data_table[hashing( key ) % m_size].size(); j++) 
-        { 
-            Entry temp = *i; 
-            
-            if( is_equal( temp.m_key, key ) )
+    auto indice = hashing(k_) % m_size; //<! calcula o indice 
+
+    /* caso exista elemento no indice calculado */
+    if( not m_data_table[indice].empty() )
+    { 
+        auto it = m_data_table[indice].begin(); //<! iterador auxiliar
+
+        for(size_t j = 0u; j < m_data_table[indice].size(); j++) //<! percorre toda a lista nesta posição da tabela
+        {             
+            if( is_equal( it->m_key, k_ ) )
             { 
-                temp.m_data = data; 
+                it->m_data = d_; //<! se for igual, atualiza a informação e retorna false
                 return false;
             }
-            i++;
+
+            it++;
         }
     }
 
-    m_data_table[hashing(key) % m_size].push_back(new_hash_entry); 
+    /* caso não exista elemento no indice calculado */
+    m_data_table[indice].push_back(new_hash_entry); 
     m_count++;
     
     return true; 
 }
 
 template< class KeyType, class DataType >
+bool HashTbl< KeyType, DataType>::retrieve( const KeyType & k_, DataType & d_ ) const
+{
+    return false;
+}
+
+template< class KeyType, class DataType >
+bool HashTbl< KeyType, DataType>::remove( const KeyType & k_ )
+{
+    std::hash<KeyType> hashing; 
+    std::equal_to<KeyType> is_equal;
+
+    auto indice = hashing( k_ ) % m_size;         
+
+    for(size_t j = 0u; j < m_data_table[indice].size(); j++) //<! percorre toda a lista nesta posição da tabela
+    {             
+        auto it = m_data_table[indice].begin(); //<! iterador auxiliar
+        if( is_equal( it->m_key, k_ ) )
+        { 
+            m_data_table[indice].erase(it); //<! se for igual, deleta dado
+            m_count--;
+            return true;
+        }
+
+        it++;
+    }
+
+    return false; // não encontrou ninguem com a mesma chave
+}
+
+template< class KeyType, class DataType >
 void HashTbl< KeyType, DataType >::clear( void )
 {
     for(size_t i = 0u; i < m_size; i++)
-    	m_data_table[i].clear();
+        m_data_table[i].clear();
     
     m_count = 0;
 }
@@ -81,7 +119,7 @@ void HashTbl< KeyType, DataType >::print( void ) const
 
     for( auto i = 0u; i < m_size; ++i )
     {
-        std::cout << i << " :{ key = ";
+        std::cout << i << " : { key = ";
         for( auto & e : m_data_table[i] )
             std::cout << hashing( e.m_key ) << " ; " << e.m_data << " " ;
 
@@ -89,28 +127,26 @@ void HashTbl< KeyType, DataType >::print( void ) const
     }
 }
 
-// ------------ FIND NEXT PRIME NUMBER ------------- //
+// ------------ find next prime number ------------- //
 
-bool is_prime( long x )
+bool is_prime( int n )
 {  
-    if( x == 1 ) // 1 é caso especial, e não é primo
+    if( n == 1 ) //<! 1 é caso especial e não é primo
         return false;
 
-    // sabemos que o 1 é divisor de todos os números, podemos começar a procurar no dois
-    // basta percorrer a lista até x/2. O máximo divisor que um número tem, sem ser ele próprio é a sua metade.
-    for( long i = 2; i <= (int) sqrt(x); i++ )
-        if( ( x % i ) == 0 )
-            return false; //Assim que encontra um divisor, sabe que o número não é primo
+    for( int i = 2; i <= (int) sqrt(n); i++ )
+        if( ( n % i ) == 0 )
+            return false; //<!  Se encontra um divisor de 2 a sqrt(n), sabe-se que o número não é primo.
 
-    return true; //não encontrou divisores, o número é primo
+    return true; //<! Não encontrou divisores, o número é primo.
  }
 
-size_t next_prime( size_t n )
+size_t next_prime( int n )
 {
-	while( true )
+	while( true ) //<! enquanto não achar o próximo primo...
 	{
 		if( is_prime( n ) )
-			return n;
+			return n; 
 
 		n++;
 	}

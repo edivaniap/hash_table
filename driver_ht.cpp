@@ -88,31 +88,38 @@ int main()
 
 	// Cria uma tabela de dispersao com capacidade p 23 elementos
 	HashTbl< Account::AcctKey, Account > contas(23);
-    std::cout << "capacidade contas = " << contas.capacity() << std::endl;
-    std::cout << "quantidade contas = " << contas.count()    << std::endl;
 
-	contas.insert( myAccounts[2].get_key(), myAccounts[2] );
-	contas.insert( myAccounts[0].get_key(), myAccounts[0] );
-	contas.insert( myAccounts[3].get_key(), myAccounts[3] );
-	contas.insert( myAccounts[1].get_key(), myAccounts[1] );
-	contas.insert( myAccounts[4].get_key(), myAccounts[4] );
+    contas.insert( myAccounts[2].get_key(), myAccounts[2] );
+    contas.insert( myAccounts[0].get_key(), myAccounts[0] );
+    contas.insert( myAccounts[3].get_key(), myAccounts[3] );
+    contas.insert( myAccounts[1].get_key(), myAccounts[1] );
+    contas.insert( myAccounts[4].get_key(), myAccounts[4] );
 
 #ifdef _NOT_NOW
-	// Em um segundo momento...
-	Account conta1;
+    // Em um segundo momento...
+    Account conta1;
 
-	constas.retrieve( myAccounts[2].get_key(), conta1 );
-	std::cout << conta1.m_client_name << std::endl;
+    constas.retrieve( myAccounts[2].get_key(), conta1 );
+    std::cout << conta1.m_client_name << std::endl;
 #endif
 
 
-	std::cout << ">>> Contas: " << std::endl;	
+    std::cout << ">>> Contas na Hash Table: " << std::endl;   
 
-	for( auto & e : myAccounts )
-		std::cout << e << std::endl;
 
-    std::cout << "\n\n>>> Hash Table...\n";
     contas.print();
+    std::cout << "capacidade contas = " << contas.capacity() << std::endl;
+    std::cout << "quantidade contas = " << contas.count()    << std::endl;
+
+    std::cout << "\n>>> Deletando conta de Aline...\n";
+    if( contas.remove( myAccounts[1].get_key() ) )
+        std::cout << "\t>> Removida com sucesso.\n\n";
+    else
+        std::cout << "\t>> Não foi possivel remover. Conta nao encotrada.\n\n";
+
+    contas.print();
+    std::cout << "capacidade contas = " << contas.capacity() << std::endl;
+    std::cout << "quantidade contas = " << contas.count()    << std::endl;
 
     std::cout << "\n\n>>> Normal exiting...\n";
 	return EXIT_SUCCESS;
